@@ -161,7 +161,7 @@ int FILE_case_correct(char * buf)
 #endif
 }
 
-FILE_case_correct_path::FILE_case_correct_path(const char * in_path) : path(strdup(in_path)) { FILE_case_correct(path); }
+FILE_case_correct_path::FILE_case_correct_path(const char * in_path) : path(_strdup(in_path)) { FILE_case_correct(path); }
 FILE_case_correct_path::~FILE_case_correct_path() { free(path); }
 
 FILE_case_correct_path::operator const char * (void) const { return path; }

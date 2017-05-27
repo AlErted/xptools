@@ -569,7 +569,7 @@ void WED_GatewayExportDialog::Submit()
 		vector<char> temp_chars(temp_folder.begin(),temp_folder.end());
 		temp_chars.push_back(0);
 
-		if(!mktemp(&temp_chars[0]))
+		if(!_mktemp(&temp_chars[0]))
 		{
 			gExportTarget = old_target;
 			return;

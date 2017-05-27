@@ -11,6 +11,7 @@
 #include <algorithm>
 
 #include <sstream>
+#include <utility>
 #include <fstream>
 #include "FileUtils.h"
 #include "RAII_Classes.h"
@@ -95,7 +96,6 @@ void CACHE_FileCacheInitializer::init()
 {
 	//Get the cache folder path
 	{
-		char    base[TEMP_FILES_DIR_LEN];
 		string cache_folder = GetCacheFolder();
 		if(cache_folder.empty() == true)
 		{
@@ -157,7 +157,7 @@ void CACHE_FileCacheInitializer::init()
 			}
 			else
 			{
-				paired_files.push_back(make_pair<string,string>(files[i], files[i+1]));
+				paired_files.push_back(make_pair(files[i], files[i+1]));
 				i += 2;
 			}
 		}
