@@ -454,6 +454,41 @@ void	AptExportRecursive(WED_Thing * what, AptVector& apts)
 		AptExportRecursive(what->GetNthChild(i), apts);
 }
 
+void	AVSExportBuildingsRecursive(WED_Thing* what, AptMarkingVector& buildingsMarkings)
+{
+	WED_AirportChain* chain = dynamic_cast<WED_AirportChain*>(what);
+	if (chain)
+	{
+		buildingsMarkings.push_back(AptMarking_t());
+		chain->Export(buildingsMarkings.back());
+		ExportLinearPath(chain, buildingsMarkings.back().area);
+
+		int n = chain->GetNumPoints();
+		for (int i = 0; i < n; ++i) 
+		{
+			WED_AirportNode* node = dynamic_cast<WED_AirportNode*>(chain->GetNthPoint(i));
+			if (node) {
+				set<int> attributes;
+				node->GetAttributes(attributes);
+				for (set<int>::iterator it = attributes.begin(); it != attributes.end(); ++it) 
+				{
+					if (ENUM_Export(*it) == (int)apt_line_avs_building_boundary) {
+						return;
+					}
+				}
+			}
+		}
+		buildingsMarkings.pop_back();
+		return;
+	}
+
+	int cc = what->CountChildren();
+	for (int i = 0; i < cc; ++i)
+	{
+		AVSExportBuildingsRecursive(what->GetNthChild(i), buildingsMarkings);
+	}
+}
+
 void	WED_AptExport(
 				WED_Thing *		container,
 				const char *	file_path)
@@ -473,6 +508,12 @@ void	WED_AptExport(
 	WriteAptFileProcs(print_func, ref, apts, get_apt_export_version());
 }
 
+void	WED_AVSBuildingsExport(WED_Thing* container, const char* file_path)
+{
+	AptMarkingVector buildingsMarkings;
+	AVSExportBuildingsRecursive(container, buildingsMarkings);
+	WriteAvsBuildingsFile(file_path, buildingsMarkings);
+}
 
 int		WED_CanExportApt(IResolver * resolver)
 {
@@ -491,6 +532,24 @@ void	WED_DoExportApt(IResolver * resolver)
 	{
 		WED_AptExport(wrl, path);
 	}
+}
+
+int		WED_CanExportAVSBuildings(IResolver* resolver)
+{
+	return WED_CanExportApt(resolver);
+}
+
+void	WED_DoExportAVSBuildings(IResolver* resolver)
+{
+	WED_Thing* wrl = WED_GetWorld(resolver);
+	char path[1024];
+	string icao = 
+	strcpy(path, "ICAO.txt");
+	if (GetFilePathFromUser(getFile_Save,"Export AVS buildings as...", "Export", FILE_DIALOG_EXPORT_APTDAT, path, sizeof(path)))
+	{
+		WED_AVSBuildingsExport(wrl, path);
+	}
+	return;
 }
 
 static WED_AirportChain * ImportLinearPath(const AptPolygon_t& path, WED_Archive * archive, WED_Thing * parent, vector<WED_AirportChain *> * chains, void (* print_func)(void *, const char *, ...), void * ref)

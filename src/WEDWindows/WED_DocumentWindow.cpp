@@ -393,6 +393,7 @@ int	WED_DocumentWindow::HandleCommand(int command)
 	case wed_UpdateMetadata:     WED_DoUpdateMetadata(mDocument); return 1;
 	case wed_ExportApt:		WED_DoExportApt(mDocument); return 1;
 	case wed_ExportPack:	WED_DoExportPack(mDocument); return 1;
+	case wed_ExportAVSBuildingsFile:	WED_DoExportAVSBuildings(mDocument); return 1; 
 #if HAS_GATEWAY	
 	case wed_ExportToGateway:		WED_DoExportToGateway(mDocument); return 1;
 #endif	
@@ -517,6 +518,7 @@ int	WED_DocumentWindow::CanHandleCommand(int command, string& ioName, int& ioChe
 #endif	
 	case wed_ImportApt:		return WED_CanImportApt(mDocument);
 	case wed_ImportDSF:		return WED_CanImportApt(mDocument);
+	case wed_ExportAVSBuildingsFile:	return WED_CanExportAVSBuildings(mDocument); 
 	case wed_ImportOrtho:	return 1;
 #if HAS_GATEWAY
 	case wed_ImportGateway:	return WED_CanImportFromGateway(mDocument);

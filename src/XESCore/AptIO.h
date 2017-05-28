@@ -40,6 +40,10 @@ bool	WriteAptFile(const char * inFileName, const AptVector& outApts, int version
 bool	WriteAptFileOpen(FILE * inFile, const AptVector& outApts, int version);
 bool	WriteAptFileProcs(int (* print_func)(void *, const char *, ...), void * ref, const AptVector& outApts, int version);
 
+bool	WriteAvsBuildingsFile(const char * inFileName, const AptMarkingVector& inBuildings);  
+bool	WriteAvsBuildingsFileOpen(FILE * inFile, const AptMarkingVector& inBuildings);
+bool	WriteAvsBuildingsFileProcs(int (* print_func)(void *, const char *, ...), void * ref, const AptMarkingVector& inBuildings);
+
 // Convert 810 to 850 layout
 void	ConvertForward(AptInfo_t& io_apt);
 

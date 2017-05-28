@@ -457,6 +457,13 @@ void DrawLineAttrs(GUI_GraphState * state, const Point2 * pts, int count, const 
 		glLineStipple(1,0x7000);
 		glShapeOffset2v(GL_LINE_STRIP, pts, count, -5);
 		break;
+	// ------------ AVS Buildings ------------
+	case line_AVSBuildingBoundary:
+		glColor4f(65.0f / 255.0f, 105.0f / 255.0f, 225.0f / 255.0f, 1.0f);
+		glLineWidth(3);
+		glDisable(GL_LINE_STIPPLE);
+		glShape2v(GL_LINE_STRIP, pts, count);
+		break;
 	}
 
 	glLineWidth(1);

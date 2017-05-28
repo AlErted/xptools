@@ -19,9 +19,6 @@
     <Filter Include="WEDMap">
       <UniqueIdentifier>{cdf16475-4c3b-4ebc-b9a2-2eb5acbae50c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="WEDNetwork">
-      <UniqueIdentifier>{55613648-fea6-498e-9e77-7080fa593b56}</UniqueIdentifier>
-    </Filter>
     <Filter Include="WEDProperties">
       <UniqueIdentifier>{d753ae4a-3424-4a70-b45d-4ae10a5b46c3}</UniqueIdentifier>
     </Filter>
@@ -78,6 +75,9 @@
     </Filter>
     <Filter Include="WEDFileCache">
       <UniqueIdentifier>{402bfda5-9fe6-4337-960e-11e7be115962}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WEDNetwork">
+      <UniqueIdentifier>{55613648-fea6-498e-9e77-7080fa593b56}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

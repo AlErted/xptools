@@ -223,6 +223,7 @@ enum {
 	apt_light_hold_short_flash,
 	apt_light_hold_short_centerline,
 	apt_light_bounary,
+	apt_line_avs_building_boundary,
 	
 	// ATC Crap
 	

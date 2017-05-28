@@ -1147,6 +1147,31 @@ bool	WriteAptFileOpen(FILE * fi, const AptVector& inApts, int version)
 	return WriteAptFileProcs((int (*)(void *, const char *,...))fprintf,fi,inApts,version);
 }
 
+bool	WriteAvsBuildingsFile(const char * inFileName, const AptMarkingVector& inBuildings)
+{
+	FILE * fi = fopen(inFileName, "wb");
+	if (fi == NULL) return false;
+	bool ok = WriteAvsBuildingsFileOpen(fi, inBuildings);
+	fclose(fi);
+	return ok;
+}
+
+bool	WriteAvsBuildingsFileOpen(FILE * inFile, const AptMarkingVector& inBuildings)
+{
+	return WriteAvsBuildingsFileProcs((int (*)(void *, const char *,...))fprintf, inFile, inBuildings);
+}
+
+bool	WriteAvsBuildingsFileProcs(int (* fprintf)(void *, const char *, ...), void * fi, const AptMarkingVector& inBuildings)
+{
+	for (AptMarkingVector::const_iterator it = inBuildings.begin(); it != inBuildings.end(); ++it)
+	{
+		fprintf(fi, "%d %s" CRLF, 121 /* AVS Building code */, it->name.c_str());
+		print_apt_poly(fprintf,fi,it->area);
+	}
+
+	return true;
+}
+
 bool	WriteAptFileProcs(int (* fprintf)(void * fi, const char * fmt, ...), void * fi, const AptVector& inApts, int version)
 {
 	DebugAssert(version == 850 || version == 1000 || version == 1050 || version == 1100);

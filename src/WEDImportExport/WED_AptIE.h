@@ -51,6 +51,8 @@ void	WED_AptExport(
 				int (*			print_func)(void *, const char *, ...),
 				void *			ref);
 
+void	WED_AVSBuildingsExport(WED_Thing* container, const char* file_path);
+
 // Given a "WED_thing", add it to the apts as needed.
 // A little bit dangerous but this can be a good way
 // to convert a selection into an aptdefs.h construct.
@@ -58,12 +60,17 @@ void	WED_AptExport(
 void	AptExportRecursive(WED_Thing * what, 
 				AptVector& apts);
 
+void	AVSExportBuildingsRecursive(WED_Thing* what, AptMarkingVector& buildingsMarkings);
+
 
 int		WED_CanExportApt(IResolver * resolver);
 void	WED_DoExportApt(IResolver * resolver);
 
 int		WED_CanImportApt(IResolver * resolver);
 void	WED_DoImportApt(WED_Document * resolver, WED_Archive * archive, WED_MapPane * pane);
+
+int		WED_CanExportAVSBuildings(IResolver* resolver);
+void	WED_DoExportAVSBuildings(IResolver* resolver);		
 
 // Given a WED_thing, put airports at file path into it - must be called inside an undo operation!
 void	WED_ImportOneAptFile(

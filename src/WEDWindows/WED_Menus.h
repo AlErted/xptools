@@ -47,7 +47,8 @@ enum {
 	wed_ImportOrtho,
 #if HAS_GATEWAY	
 	wed_ImportGateway,
-#endif	
+#endif
+	wed_ExportAVSBuildingsFile,
 #if GATEWAY_IMPORT_FEATURES
 	wed_ImportGatewayExtract,
 #endif	

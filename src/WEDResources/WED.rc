@@ -120,6 +120,7 @@ line_BRunwayHold.png			GUI_RES		line_types/line_BRunwayHold.png
 line_BOtherHold.png				GUI_RES		line_types/line_BOtherHold.png
 line_BWideBrokenSingle.png		GUI_RES		line_types/line_BWideBrokenSingle.png
 line_BILSCriticalCenter.png		GUI_RES		line_types/line_BILSCriticalCenter.png
+line_AVSBuildingBoundary.png	GUI_RES		line_types/line_AVSBuildingBoundary.png
 
 /* parking spots*/
 ClassA.png						GUI_RES		parking_spots/ClassA.png

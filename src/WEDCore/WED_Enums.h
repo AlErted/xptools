@@ -128,6 +128,8 @@ ENUM_DOMAIN(LinearFeature, "Linear Markings")
 	ENUM(line_Chequered,		"Chequered White (Roadway)",			apt_line_chequered_white)
 	ENUM(line_BrokenWhite,		"Broken White (Roadway)",				apt_line_broken_white)
 
+	ENUM(line_AVSBuildingBoundary, "AVS Building Boundary",				apt_line_avs_building_boundary)
+
 	ENUM(line_BSolidYellow,		"Solid Yellow (Black)",					apt_line_Bsolid_yellow)
 	ENUM(line_BBrokenYellow,	"Broken Yellow (Black)",				apt_line_Bbroken_yellow)
 	ENUM(line_BDoubleSolidYellow,"Double Solid Yellow (Black)",			apt_line_Bdouble_solid_yellow)
