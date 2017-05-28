@@ -1169,6 +1169,7 @@ bool	WriteAvsBuildingsFileProcs(int (* fprintf)(void *, const char *, ...), void
 		print_apt_poly(fprintf,fi,it->area);
 	}
 
+	fprintf(fi, "%d" CRLF, apt_done);
 	return true;
 }
 
